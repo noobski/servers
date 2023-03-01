@@ -1,13 +1,13 @@
 /* eslint-disable no-console */
 /* global require */
 const secure = false;
+const port = 80;
 
 if(secure)
 {
 	const express = require('express');
 	const fs = require('fs');
 	const https = require('https');
-	const port = 80; 
 
 	const app = express();
 
