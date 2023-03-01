@@ -1,0 +1,13 @@
+{
+  "users": [
+  ],
+  "games": [
+    {
+      "game": "sudoku",
+      "players_played": 0,
+      "games_played": 0,
+      "high_scores": [
+      ]
+    }
+  ]
+}
