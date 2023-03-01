@@ -1,5 +1,7 @@
+/* eslint-disable no-magic-numbers */
 /* eslint-disable no-console */
 /* global require */
+// eslint-disable-next-line no-unused-vars
 const running_local = false; // network
 
 const puzzles = require('./generate_sudoku.js');
