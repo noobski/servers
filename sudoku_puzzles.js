@@ -5,7 +5,7 @@
 exports.load_puzzles = load_puzzles;
 const numbers_in_sudoku = [1,2,3,4,5,6,7,8,9];
 
-test();
+// test();
 function test(){
 	['easy', 'medium', 'hard'].forEach(level => {
 		console.log(level);
