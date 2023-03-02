@@ -3,29 +3,23 @@
 let server, io;
 const port = 3200;
 
-start_server_and_wait_for_connections();
-function start_server_and_wait_for_connections(){
-	const app = require('express')();  /// test
-	const http = require('http');
-	server = http.Server(app);
-	// eslint-disable-next-line no-unused-vars
-	const cors = require('cors');
-	// one of the below is not required (test which one)
-	io = require('socket.io')(server, {
-		cors: {
-			origin: '*'
-		}
-	});
-	/*
-	app.use(cors({
+const app = require('express')();  /// test
+const http = require('http');
+server = http.Server(app);
+// eslint-disable-next-line no-unused-vars
+// const cors = require('cors');
+// one of the below is not required (test which one)
+/* io = require('socket.io')(server, {
+	cors: {
 		origin: '*'
-	}));
-	*/
-	server.listen(port, () => {
-		console.log('Chat server 1.0, listening on port ' + port);
-		console.log('----------------------------------------------');
-	});
-}
+	}
+});*/
+
+server.listen(port, () => {
+	console.log('Chat server 1.0, listening on port ' + port);
+	console.log('----------------------------------------------');
+});
+
 // Server-side code
 io.on('connection', (socket) => {
 	// Listen for a "join_room" event from the client
