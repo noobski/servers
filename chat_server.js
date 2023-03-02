@@ -1,20 +1,21 @@
 /* eslint-disable no-console */
 /* global require */
-let server, io;
 const port = 3200;
 
-const app = require('express')();  /// test
+const app = require('express')();  // user the 'express' api, namespace under 'app'
 const http = require('http');
-server = http.Server(app);
+const server = http.Server(app); // create an http server (which socket.io uses) that needs the 'express' api to work
+const io = require('socket.io')(server); // get a namespace (io) for socket.io, and give it a handle to the http server
+
 // eslint-disable-next-line no-unused-vars
 // const cors = require('cors');
 // one of the below is not required (test which one)
 
-io = require('socket.io')(server, {
+/* io = require('socket.io')(server, {
 	cors: {
 		origin: '*'
 	}
-});
+});*/
 
 app.get('/', (req, res) => {
 	res.send('<div align="center"><h1>Poco.la chat server active</h1></div>');
