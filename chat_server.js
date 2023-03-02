@@ -9,11 +9,16 @@ server = http.Server(app);
 // eslint-disable-next-line no-unused-vars
 // const cors = require('cors');
 // one of the below is not required (test which one)
-/* io = require('socket.io')(server, {
+
+io = require('socket.io')(server, {
 	cors: {
 		origin: '*'
 	}
-});*/
+});
+
+app.get('/', (req, res) => {
+	res.send('<div align="center"><h1>Poco.la chat server active</h1></div>');
+});
 
 server.listen(port, () => {
 	console.log('Chat server 1.0, listening on port ' + port);
