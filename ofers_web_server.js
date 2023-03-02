@@ -39,6 +39,7 @@ else
 	const express = require('express');
 	const app = express();
 	const port = 80;
+	// eslint-disable-next-line no-unused-vars
 	const server = app.listen(port, listen);
 	app.use('', express.static('../public'));
 }
