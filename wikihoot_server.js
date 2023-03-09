@@ -92,6 +92,18 @@ class Users {
 		user.score = null; // reset score when entering room
 		user.socket.join(room);
 	}
+	exit_room(username){
+		const user = this.users.get(username);
+		user.socket.leave(user.room);
+		user.room = null;
+		// TODO: if nobody left in the room, delete it and remove from db
+	}
+	move_username_to_room(username, to_room){
+		// leave current room
+		this.exit_room(username);
+		// join new room
+		this.set_room(username, to_room);
+	}
 	move_all_to_room(from_room, to_room){
 		this.get_usernames_in(from_room).forEach((username) => {
 			// leave current room
@@ -185,6 +197,13 @@ io.on('connection', (socket) => {
 		// send the player list to all in the room
 		io.to(room).emit('player_list', users.get_usernames_and_scores_in(room));
 	});
+
+	// restart the game
+	socket.on('restart', () => {
+		const room = users.get_room(socket.username);
+		users.move_username_to_room(username, 'lobby');
+		io.to('lobby').emit('player_list', users.get_usernames_and_scores_in('lobby'));
+	}
 });
 
 
