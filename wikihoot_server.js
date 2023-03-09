@@ -36,7 +36,7 @@ class Users {
 	}
 	remove(username){
 		const room = this.get_room(username);
-		this.remove_empty_rooms();
+		// this.remove_empty_rooms();
 		this.users.delete(username);
 	}
 	/*
@@ -153,7 +153,7 @@ io.on('connection', (socket) => {
 				players: users.get_usernames_and_scores_in(roomId)
 			});
 			// send a message to all sockets in the room every second. start with timer = 30, and reduce 1 each second until 0
-			let timer = 10;
+			let timer = 30;
 			const interval = setInterval(() => {
 				io.to(roomId).emit('timer', timer);
 				timer--;
