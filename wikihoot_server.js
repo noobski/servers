@@ -200,12 +200,11 @@ io.on('connection', (socket) => {
 
 	// restart the game
 	socket.on('restart', () => {
-		const room = users.get_room(socket.username);
+		const username = socket.username;
 		users.move_username_to_room(username, 'lobby');
 		io.to('lobby').emit('player_list', users.get_usernames_and_scores_in('lobby'));
-	}
+	});
 });
-
 
 server.listen(3111, () => {
 	console.log('WikiHoot v1.0 listening on port 3111');
