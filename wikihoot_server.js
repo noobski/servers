@@ -35,7 +35,6 @@ class Users {
 		socket.join('lobby');
 	}
 	remove(username){
-		const room = this.get_room(username);
 		// this.remove_empty_rooms();
 		this.users.delete(username);
 	}
