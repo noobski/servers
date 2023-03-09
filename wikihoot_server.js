@@ -52,6 +52,20 @@ class Users {
 	get_room(username){
 		return this.users.get(username).room;
 	}
+	/* get all rooms and which users are in them */
+	attendees_in_rooms(){
+		const rooms = new Map();
+		this.users.forEach((user, username) => {
+			const room = user.room;
+			if(rooms.has(room)){
+				rooms.get(room).push(username);
+			}
+			else{
+				rooms.set(room, [username]);
+			}
+		});
+		return rooms;
+	}
 	get_socket(username){
 		return this.users.get(username).socket;
 	}
@@ -86,18 +100,6 @@ class Users {
 			this.set_room(username, to_room);
 		});
 		this.delete_room(from_room);
-	}
-	attendees_in_rooms(){ // returns an array of objects with room names and the usernames of users in each room
-		const rooms = [];
-		this.users.forEach((user) => {
-			const room = user.room;
-			if (!rooms.includes(room)){
-				rooms.push(room);
-			}
-		});
-		return rooms.map((room) => {
-			return {room, users: this.get_usernames_in(room)};
-		});
 	}
 	store_article(roomId, article){
 		this.users.set(roomId, article);
